@@ -1,0 +1,21 @@
+# Firmware and extracted artefacts (never commit — proprietary)
+*.pac
+*.img
+*.bin
+*.zip
+*.rar
+*.7z
+extracted_pac/
+exploit/
+spreadtrum_flash/
+ilya_sprd/
+
+# Generated flash commands
+flash_cmd.sh
+flash_small.sh
+flash_super.sh
+*.log
+
+# Python
+__pycache__/
+*.pyc

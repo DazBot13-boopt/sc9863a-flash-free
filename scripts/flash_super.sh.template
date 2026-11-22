@@ -1,0 +1,24 @@
+#!/bin/bash
+# Template for flashing the `super` partition in isolation.
+# Edit the paths below to match your setup. Must be launched from the
+# directory containing `custom_exec_no_verify_4ee8.bin`.
+
+set -e
+
+FDL1="/path/to/exploit/fdl1-dl.bin"
+FDL2="/path/to/exploit/fdl2-dl.bin"
+SUPER_IMG="/path/to/extracted_pac/super.img"
+SPD_DUMP="/path/to/spreadtrum_flash/spd_dump"
+
+"$SPD_DUMP" \
+    --wait 300 --verbose 0 --kick \
+    keep_charge 1 \
+    exec_addr 0x4ee8 \
+    fdl "$FDL1" 0x5000 \
+    fdl "$FDL2" 0x9efffe00 \
+    exec \
+    disable_transcode \
+    skip_confirm 1 \
+    write_part super "$SUPER_IMG" \
+    set_active a \
+    power_off
